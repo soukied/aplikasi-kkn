@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
-    "cheerio": "^1.0.0-rc.10",
-    "node-fetch": "^3.2.3",
+    "@react-navigation/native-stack": "^6.6.1",
     "react": "17.0.2",
     "react-native": "0.67.4",
     "react-native-safe-area-context": "^4.2.4",
-    "react-native-screens": "^3.13.1"
+    "react-native-screens": "^3.13.1",
+    "xml-parser": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -25,6 +25,7 @@
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.66.15",
     "@types/react-test-renderer": "^17.0.1",
+    "@types/xml-parser": "^1.2.30",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "babel-jest": "^26.6.3",
