@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {Text} from '@rneui/themed';
+import {View, StyleSheet} from 'react-native';
 
 const TIMEOUT = 2; // seconds
 

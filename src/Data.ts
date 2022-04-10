@@ -95,7 +95,7 @@ async function getData() {
 			},
 			getCurrentTimeID() {
 				const curDate = new Date();
-				let curHour = curDate.getHours();
+				let curHour = curDate.getHours()+1;
 				let calHour = Math.ceil(curHour/6) * 6
 				let hour = calHour.toString();
 				let day = curDate.getDate().toString();
@@ -122,16 +122,17 @@ async function getEarthquake() {
 	}
 }
 
-interface WeatherType {
+export interface WeatherType {
 	id: string;
 	value: string;
 	isCurrentTime: boolean;
 }
-interface EarthquakeInfo {
+
+export interface EarthquakeInfo {
 	Infogempa: EarthquakeItem;
 }
 
-interface EarthquakeItem {
+export interface EarthquakeItem {
 	Tanggal: string;
 	Jam: string;
 	DateTime: string;
