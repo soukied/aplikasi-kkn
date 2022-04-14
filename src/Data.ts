@@ -129,7 +129,11 @@ export interface WeatherType {
 }
 
 export interface EarthquakeInfo {
-	Infogempa: EarthquakeItem;
+	Infogempa: _gempa;
+}
+
+interface _gempa {
+	gempa: EarthquakeItem;
 }
 
 export interface EarthquakeItem {

@@ -10,6 +10,7 @@ import {
 	StyleSheet,
 	Image
 } from 'react-native';
+import {CuacaScreen, GempaScreen} from './Screen';
 import { Icon } from '@rneui/base';
 
 interface Callback {
@@ -62,32 +63,10 @@ const MainView = (props:{callback:Callback,dataGempa:EarthquakeInfo|null,dataCua
 	  <>
 		<TabView value={index} onChange={setIndex} animationType="spring">
 	 	  <TabView.Item style={{width: '100%', flex:1, flexDirection: 'row' }}>
-			<View style={{flex: 1, width: '100%'}}>
-				<View style={{backgroundColor:'#babaff',flex: 1/3, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: '100%'}}>
-				{dataCuaca?.filter(item=>item.isCurrentTime).map(item=>{
-					return <Image key={item.id + "img"} source={weatherToImage(item.value)} />
-				})}
-				<View>
-					<Text style={{fontSize: 30}}> {clock} </Text>
-					{dataCuaca?.filter(item=>item.isCurrentTime).map(item=>{
-						const date = idToDate(item.id);
-						const hari = parseInt(date.hari);
-						const hariSekarang = new Date().getDate();
-						return (<Text style={{ fontSize: 18}} key={item.id+ '1'}> Cuaca menjadi {item.value} {"\n"} pada {date.jam}:00{hari - hariSekarang == 1 ? " besok hari" : "."}</Text>);
-					})}
-				</View>
-				</View>
-				<ScrollView style={{flex:2/3, width: '100%'}}>
-					<View style={{alignItems:'center', flex: 1, marginHorizontal: 7}}>
-				{dataCuaca?.map((item,index)=>{
-					return <WeatherDetail key={item.id} data={item} last={index == dataCuaca.length - 1}/>
-				})}
-					</View>
-				</ScrollView>
-			</View>
+			  <CuacaScreen clock={clock} dataCuaca={dataCuaca}/>
 		  </TabView.Item>
 		  <TabView.Item style={{width: '100%', flex: 1, flexDirection:'row' }}>
-			<Text></Text>
+			  <GempaScreen dataGempa={dataGempa as EarthquakeInfo}/>
 		  </TabView.Item>
 		</TabView>
 		<Tab
