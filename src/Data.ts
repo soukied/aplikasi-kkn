@@ -77,11 +77,29 @@ async function getData() {
 
 		return {
 			getWeathers() {
+				const curtimeid = this.getCurrentTimeID()
 				const w: WeatherType[] = [];
 				const data = balikpapan.children.filter(val=>val.name == "parameter" && val.attributes['id'] == "weather")[0];
-				for (let hourly of data.children) {
+				const data_temp = balikpapan.children.filter(val=>val.name == "parameter" && val.attributes['id'] == "t")[0];
+				data.children.forEach((hourly, i)=>{
+					const hourly_temp = data_temp.children[i]
 					let value = "";
 					value = weatherCode(hourly.children[0]?.content);
+					w.push({
+						id: hourly.attributes['datetime'],
+						temp: `${hourly_temp.children[0].content}°C`,
+						value: value,
+						isCurrentTime: hourly.attributes['datetime'] == curtimeid
+					});
+				});
+				return w;
+			},
+			getTemp() {
+				const w: TempType[] = [];
+				const data = balikpapan.children.filter(val=>val.name == "parameter" && val.attributes['id'] == "t")[0];
+				for (let hourly of data.children) {
+					let value : string| undefined = "";
+					value = `${hourly.children[0]?.content}°C`;
 					w.push({
 						id: hourly.attributes['datetime'],
 						value: value,
@@ -89,6 +107,9 @@ async function getData() {
 					});
 				}
 				return w;
+			},
+			getCurrentTempID() {
+			
 			},
 			getCurrentWeather() {
 				return this.getWeathers().filter(val=>val.isCurrentTime)[0];
@@ -122,9 +143,16 @@ async function getEarthquake() {
 	}
 }
 
+export interface TempType {
+	id: string;
+	value: string|undefined;
+	isCurrentTime: boolean;
+}
+
 export interface WeatherType {
 	id: string;
 	value: string;
+	temp: string;
 	isCurrentTime: boolean;
 }
 

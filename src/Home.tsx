@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getWeather as Weather, WeatherType, getEarthquake, EarthquakeInfo} from './Data';
+import {getWeather as Weather, WeatherType, getEarthquake, EarthquakeInfo, TempType} from './Data';
 import {CuacaDetail as WeatherDetail, weatherToImage} from './Detail';
 import {Tab,Button, Text, TabView} from '@rneui/themed';
 import {idToDate} from './util';
@@ -41,7 +41,7 @@ const NoDataView = (props:{interval: Callback}) => {
 	);
 }
 
-const MainView = (props:{callback:Callback,dataGempa:EarthquakeInfo|null,dataCuaca:Array<WeatherType>|undefined}) => {
+const MainView = (props:{callback:Callback,dataGempa:EarthquakeInfo|null,dataCuaca:Array<WeatherType>|undefined, dataTemp:Array<TempType>|undefined}) => {
 	const {callback, dataCuaca, dataGempa} = props;
 	const [index, setIndex] = React.useState(0);
 	const [clock, setClock] = useState("");
@@ -100,6 +100,7 @@ const Home = (props:{navigation:any}) => {
 	const {navigation} = props;
 	const [weathers, setWeathers] = useState<Array<WeatherType>|undefined>([]);
 	const [gempa, setGempa] = useState<EarthquakeInfo|null>(null);
+	const [dataTemp, setDataTemp] = useState<TempType[]|undefined>([]);
 	const [compDestroyed, setCompDestroyed] = useState(false);
 	const [dataLoaded, setDataLoaded] = useState(false);
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import {WeatherType} from './Data';
+import {TempType, WeatherType} from './Data';
 import {Text} from '@rneui/themed';
 import {idToDate} from './util';
 
@@ -58,6 +58,7 @@ function CuacaDetail(props:{data:WeatherType,last:boolean}) {
 			<View style={{justifyContent:'center'}}>
 				<Text style={{fontWeight: 'bold',fontSize: 20, color: textColor}}> {date.jam}:{date.menit} - {data.value}</Text>
 				<Text style={{color: textColor, fontSize: 15}}> {date.hari} {date.bulan}{data.isCurrentTime? " (Selanjutnya)" :""}</Text>
+				<Text style={{color: textColor, fontSize: 15}}> {data.temp} </Text>
 			</View>
 		</View>
 	);

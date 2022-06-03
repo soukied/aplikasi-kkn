@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Text} from '@rneui/themed';
 import {View, ScrollView, Image} from 'react-native';
-import {WeatherType, EarthquakeInfo} from './Data';
+import {WeatherType, EarthquakeInfo, TempType} from './Data';
 import {idToDate} from './util';
 import {weatherToImage,CuacaDetail as WeatherDetail} from './Detail';
 
 export interface CuacaScreenState {
 	dataCuaca: Array<WeatherType>|undefined;
 	clock : string;
+	temp: TempType[] | undefined;
 }
 
 export function CuacaScreen(props:CuacaScreenState) {
